@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hepsiburada_export_wizard_form_view" model="ir.ui.view">
+        <field name="name">hepsiburada.export.wizard.form</field>
+        <field name="model">hepsiburada.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export to Hepsiburada">
+                <sheet>
+                    <group>
+                        <field name="product_ids"
+                               widget="many2many_tags"
+                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    </group>
+
+                    <!-- Result section (shown after export) -->
+                    <group attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <field name="state" readonly="1"/>
+                        <field name="tracking_code"
+                               readonly="1"
+                               attrs="{'invisible': [('tracking_code', '=', False)]}"/>
+                        <field name="response_message" readonly="1" widget="text"/>
+                    </group>
+
+                    <!-- JSON preview -->
+                    <group attrs="{'invisible': [('json_preview', '=', False)]}">
+                        <field name="json_preview"
+                               readonly="1"
+                               widget="text"
+                               string="JSON Payload Preview"/>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <!-- Draft state: show action buttons -->
+                    <button name="action_export"
+                            string="Export to Hepsiburada"
+                            type="object"
+                            class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_preview_json"
+                            string="Preview JSON"
+                            type="object"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_download_json"
+                            string="Download JSON"
+                            type="object"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <!-- Done / error state: show download button -->
+                    <button name="action_download_json"
+                            string="Download JSON"
+                            type="object"
+                            attrs="{'invisible': [('state', '=', 'draft')]}"/>
+
+                    <button string="Close"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open the wizard -->
+    <record id="action_hepsiburada_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export to Hepsiburada</field>
+        <field name="res_model">hepsiburada.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

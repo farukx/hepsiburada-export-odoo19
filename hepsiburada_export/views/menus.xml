@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Top-level menu -->
+    <menuitem id="menu_hepsiburada_root"
+              name="Hepsiburada"
+              sequence="90"
+              web_icon="hepsiburada_export,static/description/icon.png"/>
+
+    <!-- Sub-menu: Export wizard -->
+    <menuitem id="menu_hepsiburada_export"
+              name="Export Products"
+              parent="menu_hepsiburada_root"
+              action="action_hepsiburada_export_wizard"
+              sequence="10"/>
+
+    <!-- Sub-menu: Settings shortcut -->
+    <menuitem id="menu_hepsiburada_settings"
+              name="Settings"
+              parent="menu_hepsiburada_root"
+              action="base_setup.action_general_configuration"
+              sequence="99"/>
+
+</odoo>

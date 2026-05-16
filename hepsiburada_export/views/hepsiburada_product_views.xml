@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── product.template: add Hepsiburada tab ─────────────────────────── -->
+    <record id="product_template_form_view_hepsiburada" model="ir.ui.view">
+        <field name="name">product.template.form.hepsiburada</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Hepsiburada" name="hepsiburada">
+                    <group string="Category &amp; Merchant">
+                        <field name="hb_category_id"/>
+                        <field name="hb_variant_group_id"/>
+                    </group>
+                    <group string="Product Attributes">
+                        <field name="hb_brand"/>
+                        <field name="hb_warranty"/>
+                        <field name="hb_weight"/>
+                        <field name="hb_tax_vat_rate"/>
+                    </group>
+                    <group string="Variant Properties">
+                        <field name="hb_color_variant"/>
+                        <field name="hb_size_variant"/>
+                    </group>
+                    <group string="Media URLs">
+                        <field name="hb_image1_url"/>
+                        <field name="hb_image2_url"/>
+                        <field name="hb_image3_url"/>
+                        <field name="hb_image4_url"/>
+                        <field name="hb_image5_url"/>
+                        <field name="hb_video1_url"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ── product.product: add HB SKU / barcode fields ─────────────────── -->
+    <record id="product_product_form_view_hepsiburada" model="ir.ui.view">
+        <field name="name">product.product.form.hepsiburada</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group string="Hepsiburada">
+                    <field name="hb_merchant_sku"/>
+                    <field name="hb_barcode"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
